@@ -3,8 +3,10 @@ syntax = "proto3";
 package users;
 
 service UserService {
-  rpc Signup(SignupRequest) returns (SignupResponse);
-  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Signup(SignupRequest) returns (SignupResponse) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc GetUserById(IdRequest) returns (UserResponse) {}
+  rpc Getusets(Empty) returns (UsersResponse) {}
 }
 
 message Error {
@@ -16,8 +18,10 @@ message Empty {}
 
 message User {
   int64 id = 1;
-  string email = 2;
-  string password = 3;
+  string username = 2
+  string type = 3
+  string email = 4;
+  string password = 5;
 }
 
 message SignupRequest {
@@ -36,3 +40,19 @@ message LoginResponse {
   string token = 1;
 }
 
+message DeleteUserId {
+  int64 id = 1;
+}
+
+
+message IdRequest{
+  int64 id = 1;
+}
+
+message UserResponse{
+  User user = 1;
+}
+
+message UsersResponse{
+  repeated User data = 1;
+}
